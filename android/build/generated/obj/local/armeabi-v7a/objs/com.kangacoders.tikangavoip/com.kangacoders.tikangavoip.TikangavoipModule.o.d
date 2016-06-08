@@ -1,4 +1,4 @@
-/var/folders/jx/z0k38kn56_b7p06vjz40dghw0000gn/T//kdesutter/tikangavoip-generated/obj/local/armeabi-v7a/objs/com.kangacoders.tikangavoip/com.kangacoders.tikangavoip.TikangavoipModule.o: \
+/Users/kdesutter/Documents/Projects/tikangavoip/android/build/generated/obj/local/armeabi-v7a/objs/com.kangacoders.tikangavoip/com.kangacoders.tikangavoip.TikangavoipModule.o: \
  jni/com.kangacoders.tikangavoip.TikangavoipModule.cpp \
  jni/com.kangacoders.tikangavoip.TikangavoipModule.h \
  /Users/kdesutter/System/androidndk/platforms/android-3/arch-arm/usr/include/jni.h \

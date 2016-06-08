@@ -31,14 +31,14 @@ public:
 
 private:
 	// Methods -----------------------------------------------------------
-	static v8::Handle<v8::Value> initiateCall(const v8::Arguments&);
 	static v8::Handle<v8::Value> unholdCall(const v8::Arguments&);
+	static v8::Handle<v8::Value> initiateCall(const v8::Arguments&);
 	static v8::Handle<v8::Value> SIPregister(const v8::Arguments&);
-	static v8::Handle<v8::Value> hangup(const v8::Arguments&);
-	static v8::Handle<v8::Value> holdCall(const v8::Arguments&);
 	static v8::Handle<v8::Value> toggleMuted(const v8::Arguments&);
-	static v8::Handle<v8::Value> answer(const v8::Arguments&);
+	static v8::Handle<v8::Value> holdCall(const v8::Arguments&);
+	static v8::Handle<v8::Value> hangup(const v8::Arguments&);
 	static v8::Handle<v8::Value> sendDTMF(const v8::Arguments&);
+	static v8::Handle<v8::Value> answer(const v8::Arguments&);
 	static v8::Handle<v8::Value> close(const v8::Arguments&);
 
 	// Dynamic property accessors ----------------------------------------

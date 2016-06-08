@@ -24,25 +24,23 @@ function moduleBootstrap(moduleBinding) {
 		invocationAPIs.push({ namespace: namespace, api: api });
 	}
 
-		addInvocationAPI(module, "Tikangavoip", "Tikangavoip", "createSipClient");
+	addInvocationAPI(module, "Tikangavoip", "Tikangavoip", "createSipClient");
+		if (!("__propertiesDefined__" in module)) {Object.defineProperties(module, {
+"SipClient": {
+get: function() {
+var SipClient =  lazyGet(this, "com.kangacoders.tikangavoip.SipClientProxy", "SipClient", "SipClient");
+return SipClient;
+},
+configurable: true
+},
 
-			if (!("__propertiesDefined__" in module)) {		
-		Object.defineProperties(module, {
-			"SipClient": {
-				get: function() {
-					var SipClient = lazyGet(this, "com.kangacoders.tikangavoip.SipClientProxy", "SipClient", "SipClient");
-					return SipClient;
-				},
-				configurable: true
-			},
-		
-		});
-		module.constructor.prototype.createSipClient = function() {
-			return new module.SipClient(arguments);
-		}
-		}
-		module.__propertiesDefined__ = true;
-		return module;
+});
+module.constructor.prototype.createSipClient = function() {
+return new module["SipClient"](arguments);
+}
+}
+module.__propertiesDefined__ = true;
+return module;
 
 }
 exports.bootstrap = moduleBootstrap;

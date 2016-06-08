@@ -6,13 +6,13 @@
 #include <v8.h>
 #include <KrollBindings.h>
 
-#include "com.kangacoders.tikangavoip.TikangavoipModule.h"
 #include "com.kangacoders.tikangavoip.SipClientProxy.h"
+#include "com.kangacoders.tikangavoip.TikangavoipModule.h"
 
 
 %}
 struct titanium::bindings::BindEntry;
 %%
-com.kangacoders.tikangavoip.TikangavoipModule, ::com::kangacoders::tikangavoip::TikangavoipModule::bindProxy, ::com::kangacoders::tikangavoip::TikangavoipModule::dispose
-com.kangacoders.tikangavoip.SipClientProxy, ::com::kangacoders::tikangavoip::tikangavoip::SipClientProxy::bindProxy, ::com::kangacoders::tikangavoip::tikangavoip::SipClientProxy::dispose
+com.kangacoders.tikangavoip.TikangavoipModule,::com::kangacoders::tikangavoip::TikangavoipModule::bindProxy,::com::kangacoders::tikangavoip::TikangavoipModule::dispose
+com.kangacoders.tikangavoip.SipClientProxy,::com::kangacoders::tikangavoip::tikangavoip::SipClientProxy::bindProxy,::com::kangacoders::tikangavoip::tikangavoip::SipClientProxy::dispose
 %%

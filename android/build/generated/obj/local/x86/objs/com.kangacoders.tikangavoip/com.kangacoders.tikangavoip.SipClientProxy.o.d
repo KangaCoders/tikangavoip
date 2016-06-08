@@ -1,4 +1,4 @@
-/var/folders/jx/z0k38kn56_b7p06vjz40dghw0000gn/T//kdesutter/tikangavoip-generated/obj/local/x86/objs/com.kangacoders.tikangavoip/com.kangacoders.tikangavoip.SipClientProxy.o: \
+/Users/kdesutter/Documents/Projects/tikangavoip/android/build/generated/obj/local/x86/objs/com.kangacoders.tikangavoip/com.kangacoders.tikangavoip.SipClientProxy.o: \
  jni/com.kangacoders.tikangavoip.SipClientProxy.cpp \
  jni/com.kangacoders.tikangavoip.SipClientProxy.h \
  /Users/kdesutter/System/androidndk/platforms/android-9/arch-x86/usr/include/jni.h \

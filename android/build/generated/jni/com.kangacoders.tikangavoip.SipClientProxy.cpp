@@ -87,14 +87,14 @@ Handle<FunctionTemplate> SipClientProxy::getProxyTemplate()
 	titanium::ProxyFactory::registerProxyPair(javaClass, *proxyTemplate);
 
 	// Method bindings --------------------------------------------------------
-	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "initiateCall", SipClientProxy::initiateCall);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "unholdCall", SipClientProxy::unholdCall);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "initiateCall", SipClientProxy::initiateCall);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "SIPregister", SipClientProxy::SIPregister);
-	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "hangup", SipClientProxy::hangup);
-	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "holdCall", SipClientProxy::holdCall);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "toggleMuted", SipClientProxy::toggleMuted);
-	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "answer", SipClientProxy::answer);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "holdCall", SipClientProxy::holdCall);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "hangup", SipClientProxy::hangup);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "sendDTMF", SipClientProxy::sendDTMF);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "answer", SipClientProxy::answer);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "close", SipClientProxy::close);
 
 	Local<ObjectTemplate> prototypeTemplate = proxyTemplate->PrototypeTemplate();
@@ -134,6 +134,49 @@ Handle<FunctionTemplate> SipClientProxy::getProxyTemplate()
 }
 
 // Methods --------------------------------------------------------------------
+Handle<Value> SipClientProxy::unholdCall(const Arguments& args)
+{
+	LOGD(TAG, "unholdCall()");
+	HandleScope scope;
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		return titanium::JSException::GetJNIEnvironmentError();
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(SipClientProxy::javaClass, "unholdCall", "()V");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'unholdCall' with signature '()V'";
+			LOGE(TAG, error);
+				return titanium::JSException::Error(error);
+		}
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
+
+	jvalue* jArguments = 0;
+
+	jobject javaProxy = proxy->getJavaObject();
+	env->CallVoidMethodA(javaProxy, methodID, jArguments);
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+	if (env->ExceptionCheck()) {
+		titanium::JSException::fromJavaException();
+		env->ExceptionClear();
+	}
+
+
+
+
+	return v8::Undefined();
+
+}
 Handle<Value> SipClientProxy::initiateCall(const Arguments& args)
 {
 	LOGD(TAG, "initiateCall()");
@@ -199,49 +242,6 @@ Handle<Value> SipClientProxy::initiateCall(const Arguments& args)
 	return v8::Undefined();
 
 }
-Handle<Value> SipClientProxy::unholdCall(const Arguments& args)
-{
-	LOGD(TAG, "unholdCall()");
-	HandleScope scope;
-
-	JNIEnv *env = titanium::JNIScope::getEnv();
-	if (!env) {
-		return titanium::JSException::GetJNIEnvironmentError();
-	}
-	static jmethodID methodID = NULL;
-	if (!methodID) {
-		methodID = env->GetMethodID(SipClientProxy::javaClass, "unholdCall", "()V");
-		if (!methodID) {
-			const char *error = "Couldn't find proxy method 'unholdCall' with signature '()V'";
-			LOGE(TAG, error);
-				return titanium::JSException::Error(error);
-		}
-	}
-
-	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
-
-	jvalue* jArguments = 0;
-
-	jobject javaProxy = proxy->getJavaObject();
-	env->CallVoidMethodA(javaProxy, methodID, jArguments);
-
-	if (!JavaObject::useGlobalRefs) {
-		env->DeleteLocalRef(javaProxy);
-	}
-
-
-
-	if (env->ExceptionCheck()) {
-		titanium::JSException::fromJavaException();
-		env->ExceptionClear();
-	}
-
-
-
-
-	return v8::Undefined();
-
-}
 Handle<Value> SipClientProxy::SIPregister(const Arguments& args)
 {
 	LOGD(TAG, "SIPregister()");
@@ -256,92 +256,6 @@ Handle<Value> SipClientProxy::SIPregister(const Arguments& args)
 		methodID = env->GetMethodID(SipClientProxy::javaClass, "SIPregister", "()V");
 		if (!methodID) {
 			const char *error = "Couldn't find proxy method 'SIPregister' with signature '()V'";
-			LOGE(TAG, error);
-				return titanium::JSException::Error(error);
-		}
-	}
-
-	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
-
-	jvalue* jArguments = 0;
-
-	jobject javaProxy = proxy->getJavaObject();
-	env->CallVoidMethodA(javaProxy, methodID, jArguments);
-
-	if (!JavaObject::useGlobalRefs) {
-		env->DeleteLocalRef(javaProxy);
-	}
-
-
-
-	if (env->ExceptionCheck()) {
-		titanium::JSException::fromJavaException();
-		env->ExceptionClear();
-	}
-
-
-
-
-	return v8::Undefined();
-
-}
-Handle<Value> SipClientProxy::hangup(const Arguments& args)
-{
-	LOGD(TAG, "hangup()");
-	HandleScope scope;
-
-	JNIEnv *env = titanium::JNIScope::getEnv();
-	if (!env) {
-		return titanium::JSException::GetJNIEnvironmentError();
-	}
-	static jmethodID methodID = NULL;
-	if (!methodID) {
-		methodID = env->GetMethodID(SipClientProxy::javaClass, "hangup", "()V");
-		if (!methodID) {
-			const char *error = "Couldn't find proxy method 'hangup' with signature '()V'";
-			LOGE(TAG, error);
-				return titanium::JSException::Error(error);
-		}
-	}
-
-	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
-
-	jvalue* jArguments = 0;
-
-	jobject javaProxy = proxy->getJavaObject();
-	env->CallVoidMethodA(javaProxy, methodID, jArguments);
-
-	if (!JavaObject::useGlobalRefs) {
-		env->DeleteLocalRef(javaProxy);
-	}
-
-
-
-	if (env->ExceptionCheck()) {
-		titanium::JSException::fromJavaException();
-		env->ExceptionClear();
-	}
-
-
-
-
-	return v8::Undefined();
-
-}
-Handle<Value> SipClientProxy::holdCall(const Arguments& args)
-{
-	LOGD(TAG, "holdCall()");
-	HandleScope scope;
-
-	JNIEnv *env = titanium::JNIScope::getEnv();
-	if (!env) {
-		return titanium::JSException::GetJNIEnvironmentError();
-	}
-	static jmethodID methodID = NULL;
-	if (!methodID) {
-		methodID = env->GetMethodID(SipClientProxy::javaClass, "holdCall", "()V");
-		if (!methodID) {
-			const char *error = "Couldn't find proxy method 'holdCall' with signature '()V'";
 			LOGE(TAG, error);
 				return titanium::JSException::Error(error);
 		}
@@ -414,9 +328,9 @@ Handle<Value> SipClientProxy::toggleMuted(const Arguments& args)
 	return v8::Undefined();
 
 }
-Handle<Value> SipClientProxy::answer(const Arguments& args)
+Handle<Value> SipClientProxy::holdCall(const Arguments& args)
 {
-	LOGD(TAG, "answer()");
+	LOGD(TAG, "holdCall()");
 	HandleScope scope;
 
 	JNIEnv *env = titanium::JNIScope::getEnv();
@@ -425,9 +339,52 @@ Handle<Value> SipClientProxy::answer(const Arguments& args)
 	}
 	static jmethodID methodID = NULL;
 	if (!methodID) {
-		methodID = env->GetMethodID(SipClientProxy::javaClass, "answer", "()V");
+		methodID = env->GetMethodID(SipClientProxy::javaClass, "holdCall", "()V");
 		if (!methodID) {
-			const char *error = "Couldn't find proxy method 'answer' with signature '()V'";
+			const char *error = "Couldn't find proxy method 'holdCall' with signature '()V'";
+			LOGE(TAG, error);
+				return titanium::JSException::Error(error);
+		}
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
+
+	jvalue* jArguments = 0;
+
+	jobject javaProxy = proxy->getJavaObject();
+	env->CallVoidMethodA(javaProxy, methodID, jArguments);
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+	if (env->ExceptionCheck()) {
+		titanium::JSException::fromJavaException();
+		env->ExceptionClear();
+	}
+
+
+
+
+	return v8::Undefined();
+
+}
+Handle<Value> SipClientProxy::hangup(const Arguments& args)
+{
+	LOGD(TAG, "hangup()");
+	HandleScope scope;
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		return titanium::JSException::GetJNIEnvironmentError();
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(SipClientProxy::javaClass, "hangup", "()V");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'hangup' with signature '()V'";
 			LOGE(TAG, error);
 				return titanium::JSException::Error(error);
 		}
@@ -503,6 +460,49 @@ Handle<Value> SipClientProxy::sendDTMF(const Arguments& args)
 	} else {
 		jArguments[0].i = NULL;
 	}
+
+	jobject javaProxy = proxy->getJavaObject();
+	env->CallVoidMethodA(javaProxy, methodID, jArguments);
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+	if (env->ExceptionCheck()) {
+		titanium::JSException::fromJavaException();
+		env->ExceptionClear();
+	}
+
+
+
+
+	return v8::Undefined();
+
+}
+Handle<Value> SipClientProxy::answer(const Arguments& args)
+{
+	LOGD(TAG, "answer()");
+	HandleScope scope;
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		return titanium::JSException::GetJNIEnvironmentError();
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(SipClientProxy::javaClass, "answer", "()V");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'answer' with signature '()V'";
+			LOGE(TAG, error);
+				return titanium::JSException::Error(error);
+		}
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
+
+	jvalue* jArguments = 0;
 
 	jobject javaProxy = proxy->getJavaObject();
 	env->CallVoidMethodA(javaProxy, methodID, jArguments);
