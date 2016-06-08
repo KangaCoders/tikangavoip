@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 "/Users/nreynen/projects/tikangavoip/android/build/generated/java/com/kangacoders/tikangavoip/TikangavoipBootstrap.java"
 "/Users/nreynen/projects/tikangavoip/android/src/com/kangacoders/tikangavoip/AndroidSIPClient.java"
 "/Users/nreynen/projects/tikangavoip/android/src/com/kangacoders/tikangavoip/IncomingCallReceiver.java"
 "/Users/nreynen/projects/tikangavoip/android/src/com/kangacoders/tikangavoip/SipClientProxy.java"
 "/Users/nreynen/projects/tikangavoip/android/src/com/kangacoders/tikangavoip/TikangavoipModule.java"
+=======
+"/Users/kdesutter/Documents/Projects/tikangavoip/android/build/generated/java/com/kangacoders/tikangavoip/TikangavoipBootstrap.java"
+"/Users/kdesutter/Documents/Projects/tikangavoip/android/src/com/kangacoders/tikangavoip/AndroidSIPClient.java"
+"/Users/kdesutter/Documents/Projects/tikangavoip/android/src/com/kangacoders/tikangavoip/IncomingCallReceiver.java"
+"/Users/kdesutter/Documents/Projects/tikangavoip/android/src/com/kangacoders/tikangavoip/SipClientProxy.java"
+"/Users/kdesutter/Documents/Projects/tikangavoip/android/src/com/kangacoders/tikangavoip/TikangavoipModule.java"
+>>>>>>> 8c87987848b90582580604876b35f12f543f0fb0
