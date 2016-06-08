@@ -1,0 +1,5 @@
+"/Users/nreynen/projects/tikangavoip/android/build/generated/java/com/kangacoders/tikangavoip/TikangavoipBootstrap.java"
+"/Users/nreynen/projects/tikangavoip/android/src/com/kangacoders/tikangavoip/AndroidSIPClient.java"
+"/Users/nreynen/projects/tikangavoip/android/src/com/kangacoders/tikangavoip/IncomingCallReceiver.java"
+"/Users/nreynen/projects/tikangavoip/android/src/com/kangacoders/tikangavoip/SipClientProxy.java"
+"/Users/nreynen/projects/tikangavoip/android/src/com/kangacoders/tikangavoip/TikangavoipModule.java"
